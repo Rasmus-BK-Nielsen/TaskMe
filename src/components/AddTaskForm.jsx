@@ -4,6 +4,7 @@ const AddTaskForm = ({ onSave, onClose }) => {
   const [title, setTitle] = useState("");
   const [isMajor, setIsMajor] = useState(false);
   const [dueDate, setDueDate] = useState("");
+  const [isRecurring, setIsRecurring] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -15,6 +16,7 @@ const AddTaskForm = ({ onSave, onClose }) => {
       isMajor,
       dueDate: dueDate || null,
       completed: false,
+      recurring: isRecurring,
     };
 
     onSave(newTask);
@@ -64,6 +66,17 @@ const AddTaskForm = ({ onSave, onClose }) => {
           >
             Cancel
           </button>
+
+          <label className="block text-sm font-medium text-gray-700 mb-1">
+            <input
+              type="checkbox"
+              checked={isRecurring}
+              onChange={(e) => setIsRecurring(e.target.checked)}
+              className="mr-2"
+            />
+            Recurring Task
+          </label>
+
           <button type="submit" className="bg-blue-600 text-white px-4 py-2 rounded">
             Save
           </button>
